@@ -1,0 +1,42 @@
+Index: git/zipkin/CMakeLists.txt
+===================================================================
+--- git.orig/zipkin/CMakeLists.txt
++++ git/zipkin/CMakeLists.txt
+@@ -21,9 +21,15 @@ if (BUILD_SHARED_LIBS)
+   target_link_libraries(zipkin Threads::Threads ${CURL_LIBRARIES} ${WIN32_LIBRARIES})
+   set_target_properties(zipkin PROPERTIES VERSION ${ZIPKIN_VERSION_STRING}
+                                           SOVERSION ${ZIPKIN_VERSION_MAJOR})
+-  install(TARGETS zipkin 
++  install(TARGETS zipkin EXPORT zipkinTgt
+           COMPONENT DIST
+           LIBRARY DESTINATION lib)
++
++  install(EXPORT zipkinTgt
++          DESTINATION lib/cmake/zipkin
++          COMPONENT devel
++          FILE zipkin-config.cmake)
++
+ endif()
+ 
+ if (BUILD_STATIC_LIBS)
+Index: git/zipkin_opentracing/CMakeLists.txt
+===================================================================
+--- git.orig/zipkin_opentracing/CMakeLists.txt
++++ git/zipkin_opentracing/CMakeLists.txt
+@@ -28,9 +28,15 @@ if (BUILD_SHARED_LIBS)
+   target_link_libraries(zipkin_opentracing ${OPENTRACING_LIB} zipkin)
+   set_target_properties(zipkin_opentracing PROPERTIES VERSION ${ZIPKIN_VERSION_STRING}
+                                                       SOVERSION ${ZIPKIN_VERSION_MAJOR})
+-  install(TARGETS zipkin_opentracing 
++  install(TARGETS zipkin_opentracing EXPORT zipkinTgt
+           COMPONENT DIST
+           LIBRARY DESTINATION lib)
++
++  install(EXPORT zipkinTgt
++          DESTINATION lib/cmake/zipkin_opentracing
++          COMPONENT devel
++          FILE zipkin_opentracing-config.cmake)
++
+ endif()
+ 
+ if (BUILD_STATIC_LIBS)

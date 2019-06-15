@@ -1,0 +1,10 @@
+--- a/90-usbmount.rules
++++ b/90-usbmount.rules
+@@ -1,5 +1,5 @@
+ # Rules for USBmount -*- conf -*-
+ 
+ KERNEL=="sd*", DRIVERS=="sbp2",     ACTION=="add",  PROGRAM="/bin/systemd-escape -p --template=usbmount@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c"
+-KERNEL=="sd*", SUBSYSTEMS=="usb",   ACTION=="add",  PROGRAM="/bin/systemd-escape -p --template=usbmount@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c"
+-KERNEL=="ub*", SUBSYSTEMS=="usb",   ACTION=="add",  PROGRAM="/bin/systemd-escape -p --template=usbmount@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c"
++KERNEL=="sd*", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", ACTION=="add",  PROGRAM="/bin/systemd-escape -p --template=usbmount@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c"
++KERNEL=="ub*", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", ACTION=="add",  PROGRAM="/bin/systemd-escape -p --template=usbmount@.service $env{DEVNAME}", ENV{SYSTEMD_WANTS}+="%c"

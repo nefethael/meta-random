@@ -1,0 +1,13 @@
+--- a/src/sgDb.c
++++ b/src/sgDb.c
+@@ -467,8 +467,9 @@ void updateProgressBar(float prog)
+ 		}
+ 		printf("] %d %% done", (int)(prog * 100.0)); fflush(stderr);
+ 	} else {
+-		if (((int)(prog * 100.0) % 100) == 0)
++		if (((int)(prog * 100.0) % 100) == 0){
+ 			printf("."); fflush(stderr);
++        }
+ 	}
+ 
+ 	return;

@@ -1,0 +1,30 @@
+Index: git/CMakeLists.txt
+===================================================================
+--- git.orig/CMakeLists.txt
++++ git/CMakeLists.txt
+@@ -49,10 +49,10 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+ find_package(Threads REQUIRED)
+ 
+ find_package(CURL)
+-include_directories(SYSTEM ${CURL_INCLUDE_DIRS})
++include_directories(${CURL_INCLUDE_DIRS})
+ 
+ 
+-include_directories(SYSTEM 3rd_party/include)
++include_directories(3rd_party/include)
+ 
+ add_executable(embedfile 3rd_party/embedfile/src/embedfile.c)
+ 
+Index: git/zipkin_opentracing/CMakeLists.txt
+===================================================================
+--- git.orig/zipkin_opentracing/CMakeLists.txt
++++ git/zipkin_opentracing/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ find_path(OPENTRACING_INCLUDE_DIR NAMES opentracing/tracer.h)
+ find_library(OPENTRACING_LIB opentracing)
+ 
+-include_directories(SYSTEM ${OPENTRACING_INCLUDE_DIR})
++include_directories(${OPENTRACING_INCLUDE_DIR})
+ 
+ set(EMBED_CONFIGURATION_SCHEMA_OUTPUT_FILE  
+   ${CMAKE_CURRENT_BINARY_DIR}/tracer_configuration_schema.cpp)

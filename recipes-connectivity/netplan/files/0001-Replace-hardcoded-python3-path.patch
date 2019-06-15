@@ -1,0 +1,10 @@
+Index: git/src/netplan.script
+===================================================================
+--- git.orig/src/netplan.script
++++ git/src/netplan.script
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python3
++#!/usr/bin/env python3
+ #
+ # Copyright (C) 2018 Canonical, Ltd.
+ # Author: Mathieu Trudel-Lapierre <mathieu.trudel-lapierre@canonical.com>

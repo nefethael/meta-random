@@ -1,0 +1,39 @@
+# Example systemd unit file.
+# Add this file to "/etc/systemd/system/journalbeat.service" The `ExecStart`
+# should be changed point at the correct binary path, configuration options.
+
+[Unit]
+Description = journalbeat service
+Documentation = https://github.com/mheese/journalbeat/blob/master/README.md
+Wants = network-online.target
+After = network-online.target
+
+[Service]
+Type = simple
+ExecReload = /bin/kill -HUP $MAINPID
+ExecStart = /usr/bin/journalbeat -c /etc/journalbeat/journalbeat.yml -path.home /usr/share/journalbeat -path.config /etc/journalbeat -path.data /var/lib/journalbeat -path.logs /var/log/journalbeat
+
+# Set Accounting
+BlockIOAccounting = True
+CPUAccounting = True
+MemoryAccounting = True
+TasksAccounting = True
+PrivateDevices = False
+PrivateNetwork = False
+
+# Set Sandboxing
+PrivateTmp = True
+PrivateUsers = True
+Restart = on-failure
+RestartSec = 2
+
+# This creates a specific slice which all services will operate from
+#  The accounting options give us the ability to see resource usage through
+#  the `systemd-cgtop` command.
+Slice = system.slice
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec = 20
+
+[Install]
+WantedBy = multi-user.target

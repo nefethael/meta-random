@@ -1,0 +1,15 @@
+[Unit]
+Description=System Can Bus Service
+After=network.target
+After=emucd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -x -c '/sbin/ip link set can0 type can bitrate 250000 ; /sbin/ifconfig can0 up; /sbin/ip link set can0 txqueuelen 500'
+ExecReload=/bin/sh -x -c '/sbin/ifconfig can0 down ; /sbin/ip link set can0 type can bitrate 250000 ; /sbin/ifconfig can0 up; ip link set can0 txqueuelen 500'
+ExecStop=/bin/sh -x -c '/sbin/ifconfig can0 down'
+
+[Install]
+WantedBy=multi-user.target
+
