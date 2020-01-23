@@ -9,9 +9,9 @@ PR = "r0"
 S = "${WORKDIR}/git"
 
 SRC_URI = "git://github.com/jbeder/${PN}.git;branch=master;protocol=git"
-SRCREV = "562aefc114938e388457e6a531ed7b54d9dc1b62"
+SRCREV = "9a3624205e8774953ef18f57067b3426c1c5ada6"
 
 
-EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TESTS=OFF"
+EXTRA_OECMAKE = "-DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TESTS=OFF"
 
 inherit cmake

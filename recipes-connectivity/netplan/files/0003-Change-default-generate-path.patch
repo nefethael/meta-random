@@ -7,7 +7,7 @@ Index: git/netplan/cli/utils.py
  
  def get_generator_path():
 -    return os.environ.get('NETPLAN_GENERATE_PATH', '/lib/netplan/generate')
-+    return os.environ.get('NETPLAN_GENERATE_PATH', '/usr/lib/python3.5/site-packages/netplan/generate')
++    return os.environ.get('NETPLAN_GENERATE_PATH', '/usr/lib/netplan/generate')
  
  
  def is_nm_snap_enabled():  # pragma: nocover (covered in autopkgtest)
