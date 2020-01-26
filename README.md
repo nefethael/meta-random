@@ -11,7 +11,7 @@ Yocto layer with following recipes:
 | node_exporter          | 0.18.1
 | cntlm                  |  0.93beta5
 | mongo-tools            | 4.1.5
-| sol2 version           | 2.20.6
+| sol2                   | 2.20.6
 | yaml-cpp               | 0.6.3
 | influxdb               | 1.7.9
 | kapacitor              | 1.5.4
